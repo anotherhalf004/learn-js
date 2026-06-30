@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile Form</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <section class="form-section">
+        <h1>Create User Profile</h1>
+        <form class="user-form">
+          <label for="pic">User Picture</label>
+          <input type="text" id="pic" placeholder="Paste image URL" />
+
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Enter full name" />
+
+          <label for="occupation">Occupation</label>
+          <input type="text" id="occupation" placeholder="Enter occupation" />
+
+          <label for="bio">Bio</label>
+          <textarea
+            id="bio"
+            rows="4"
+            placeholder="Write a short bio"
+          ></textarea>
+
+          <button type="submit">Add User</button>
+        </form>
+      </section>
+
+      <section class="users-section">
+        <h2>All Users</h2>
+        <div class="user-list">
+          
+        </div>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

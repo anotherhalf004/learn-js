@@ -1,56 +1,68 @@
-//------THIS - in different scenarios-------//
-/*
+let form = document.querySelector(".user-form");
+let pic = document.querySelector("#pic");
+let username = document.querySelector("#name");
+let role = document.querySelector("#occupation");
+let bio = document.querySelector("#bio");
 
-global - window
-function - window
-method with es5 func - object
-method with es6 arrow fnc - window
-es5 function inside es5 method - window
-arrow fnc inside es5 method - object
-event handler - element on which event is being handled
-class - blank object
 
-*/
+const userManager = {
+    users: [],
+    init : function(){
+        form.addEventListener("submit", this.submitForm.bind(this));
+    },
+    submitForm : function(evt) {
+        evt.preventDefault();
+        this.addUser();
 
-let obj = {
-    name : "sun",
-    sayName : function(){
-        console.log(this);
-    }
-}
+        form.reset();
+    },
+    addUser : function () {
+        this.users.push({
+            pic : pic.value,
+            username : username.value,
+            role : role.value,
+            bio : bio.value
+        });
+        this.renderUi();
+    },
+    renderUi: function () {
+        const userList = document.querySelector(".user-list");
+        userList.innerHTML = "";
 
-obj.sayName();
+        this.users.forEach(function(user) {
+            const userCard = document.createElement("div");
+            userCard.className = "user-card";
 
-///
+            const img = document.createElement("img");
+            img.src = user.pic;
+            img.alt = user.username;
 
-document.querySelector("h1").addEventListener("click",function() {
-    console.dir(this.textContent = "lol");
-});
+            const userInfo = document.createElement("div");
+            userInfo.className = "user-info";
 
-///
+            const h3 = document.createElement("h3");
+            h3.textContent = user.username;
 
-class abcd{
-    a=12;
-    constructor(){
-        console.log("hallo");
-        console.log(this);
-    }
-}
+            const occupation = document.createElement("p");
+            occupation.className = "occupation";
+            occupation.textContent = user.role;
 
-let a = new abcd;
-///
+            const bio = document.createElement("p");
+            bio.className = "bio";
+            bio.textContent = user.bio;
 
-// call apply bind
+            userInfo.appendChild(h3);
+            userInfo.appendChild(occupation);
+            userInfo.appendChild(bio);
 
-let obj1 = {
-    name: "nomnom"
-}
+            userCard.appendChild(img);
+            userCard.appendChild(userInfo);
 
-function fn(param1,param2,param3) {
-    console.log(this,param1,param2);
-}
-fn.call(obj1);
-fn.apply(obj1,[1,2,3]);
+            userList.appendChild(userCard);
+        });
+    },
+    removeUser : function () {},
 
-let fn1 = fn.bind(obj1,1,2,3);
-fn1();
+};
+
+userManager.init();
